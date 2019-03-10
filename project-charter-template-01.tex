@@ -1,12 +1,44 @@
-\emph{\textless{}Project Name\textgreater{}}
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} % generates Lorem Ipsum filler text
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{color}
+\usepackage{marvosym}
+\usepackage[ampersand]{easylist}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage{graphicx}
+\usepackage[whole]{bxcjkjatype}
+\usepackage{longtable}
+\usepackage{booktabs}
 
-project charter
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
 
-Version \emph{\textless{}1.0\textgreater{}}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\small \textless{}Project Name\textgreater{}}
+\renewcommand{\footrulewidth}{0.5pt}
+\cfoot{\small Page \thepage\ of \pageref{LastPage}}
 
-\emph{\textless{}mm/dd/yyyy\textgreater{}}
+%\graphicspath{ {plantuml/} }
 
-VERSION HISTORY
+\begin{document}
+\noindent
+
+\textbf{\Large \textless{}Project Name\textgreater{}}
+
+\textbf{\Large PROJECT CHARTER}
+
+Version: 1.0
+
+Date: \today
+
+\textbf{VERSION HISTORY}
 
 {[}Provide information on how the development and distribution of the
 Project Charter up to the final point of approval was controlled and
@@ -51,10 +83,13 @@ version.{]}
 \bottomrule
 \end{longtable}
 
-\textbf{UP Template Version:} 11/30/06
+\hfill \textbf{UP Template Version:} 11/30/06
 
-\emph{\textbf{\\
-Note to the Author}}
+\newpage
+
+%----------------------------------------------------------
+
+\textbf{Note to the author}
 
 {[}This document is a template of a Project Charter document for a
 project. The template includes instructions to the author, boilerplate
@@ -111,9 +146,7 @@ that you follow these steps:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \begin{quote}
   Modify boilerplate text as appropriate to the specific project.
-  \end{quote}
 \item
   To add any new sections to the document, ensure that the appropriate
   header and body text styles are maintained. Styles used for the
@@ -129,80 +162,18 @@ that you follow these steps:
   square brackets.{]}
 \end{enumerate}
 
-TABLE OF CONTENTS
+\newpage
 
-\protect\hyperlink{_Toc141159323}{1 Introduction 5}
+%----------------------------------------------------------
 
-\protect\hyperlink{purpose-of-project-charter}{1.1 Purpose of Project
-Charter 5}
+\tableofcontents
 
-\protect\hyperlink{project-and-product-overview}{2 project And Product
-Overview 5}
+\newpage
 
-\protect\hyperlink{justification}{3 Justification 5}
-
-\protect\hyperlink{business-need}{3.1 Business Need 5}
-
-\protect\hyperlink{public-health-and-business-impact}{3.2 Public Health
-and Business Impact 5}
-
-\protect\hyperlink{strategic-alignment}{3.3 Strategic Alignment 5}
-
-\protect\hyperlink{scope}{4 Scope 6}
-
-\protect\hyperlink{objectives}{4.1 Objectives 6}
-
-\protect\hyperlink{high-level-requirements}{4.2 High-Level Requirements
-6}
-
-\protect\hyperlink{major-deliverables}{4.3 Major Deliverables 6}
-
-\protect\hyperlink{boundaries}{4.4 Boundaries 6}
-
-\protect\hyperlink{duration}{5 Duration 7}
-
-\protect\hyperlink{timeline}{5.1 Timeline 7}
-
-\protect\hyperlink{executive-milestones}{5.2 Executive Milestones 7}
-
-\protect\hyperlink{budget-estimate}{6 budget Estimate 7}
-
-\protect\hyperlink{funding-source}{6.1 Funding Source 7}
-
-\protect\hyperlink{estimate}{6.2 Estimate 7}
-
-\protect\hyperlink{high-level-alternatives-analysis}{7 High-Level
-Alternatives Analysis 8}
-
-\protect\hyperlink{assumptions-constraints-and-risks}{8 Assumptions,
-Constraints And Risks 8}
-
-\protect\hyperlink{assumptions}{8.1 Assumptions 8}
-
-\protect\hyperlink{constraints}{8.2 Constraints 8}
-
-\protect\hyperlink{risks}{8.3 Risks 8}
-
-\protect\hyperlink{project-organization}{9 Project Organization 9}
-
-\protect\hyperlink{roles-and-responsibilities}{9.1 Roles and
-Responsibilities 9}
-
-\protect\hyperlink{stakeholders-internal-and-external}{9.2 Stakeholders
-(Internal and External) 10}
-
-\protect\hyperlink{project-charter-approval}{10 project Charter approval
-11}
-
-\protect\hyperlink{_Toc107027580}{APPENDIX A: REFERENCES 12}
-
-\protect\hyperlink{_Toc106079534}{APPENDIX B: KEY TERMS 13}
-
-\protect\hyperlink{_Toc141159352}{APPENDIX C: GOALS 14}
+%----------------------------------------------------------
 
 \hypertarget{introduction}{%
-\section{\texorpdfstring{\\
-Introduction}{ Introduction}}\label{introduction}}
+\section{Introduction}\label{introduction}}
 
 \hypertarget{purpose-of-project-charter}{%
 \subsection{Purpose of Project
@@ -222,8 +193,7 @@ Name\textgreater{}} project charter is \emph{the project sponsor and
 senior leadership.}
 
 \hypertarget{project-and-product-overview}{%
-\section{project And Product
-Overview}\label{project-and-product-overview}}
+\section{Project And Product Overview}\label{project-and-product-overview}}
 
 {[}Typically, the description should answer who, what, when and where,
 in a concise manner. It should also state the estimated project duration
@@ -369,8 +339,7 @@ and their estimated completion timeframe.
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-\textbf{Executive Milestones } & \textbf{Estimated Completion
-Timeframe}\tabularnewline
+\textbf{Executive Milestones} & \textbf{Estimated Completion Timeframe}\tabularnewline
 \midrule
 \endhead
 {[}Insert milestone information (e.g., Project planned and authorized to
@@ -384,7 +353,7 @@ requirements analysis is completed){]}\tabularnewline
 \end{longtable}
 
 \hypertarget{budget-estimate}{%
-\section{budget Estimate}\label{budget-estimate}}
+\section{Budget Estimate}\label{budget-estimate}}
 
 \hypertarget{funding-source}{%
 \subsection{Funding Source}\label{funding-source}}
@@ -410,8 +379,7 @@ other projects, provide a summary of the project's expected spending}
 }
 
 \hypertarget{high-level-alternatives-analysis}{%
-\section{High-Level Alternatives
-Analysis}\label{high-level-alternatives-analysis}}
+\section{High-Level Alternatives Analysis}\label{high-level-alternatives-analysis}}
 
 {[}Example: Alternatives to developing a custom system may have included
 looking at existing COTS products or reusing an existing system.{]}
@@ -425,8 +393,7 @@ looking at existing COTS products or reusing an existing system.{]}
 \end{enumerate}
 
 \hypertarget{assumptions-constraints-and-risks}{%
-\section{Assumptions, Constraints And
-Risks}\label{assumptions-constraints-and-risks}}
+\section{Assumptions, Constraints And Risks}\label{assumptions-constraints-and-risks}}
 
 \hypertarget{assumptions}{%
 \subsection{Assumptions}\label{assumptions}}
@@ -617,9 +584,7 @@ using a software application (the proposed project) to collect the data
 required for a behavioral research project.{]}
 
 \hypertarget{project-charter-approval}{%
-\section{\texorpdfstring{\\
-project Charter
-approval}{ project Charter approval}}\label{project-charter-approval}}
+\section{Project Charter Approval}\label{project-charter-approval}}
 
 The undersigned acknowledge they have reviewed the project charter and
 authorize and fund the \emph{\textless{}Project Name\textgreater{}}
@@ -665,7 +630,7 @@ Role: & & &\tabularnewline
 \bottomrule
 \end{longtable}
 
-\protect\hypertarget{_Toc107027580}{}{}APPENDIX A: REFERENCES
+\section{APPENDIX A: REFERENCES}
 
 {[}Insert the name, version number, description, and physical location
 of any documents referenced in this document. Add rows to the table as
@@ -688,7 +653,7 @@ or Network path where document is located\textgreater{}}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\protect\hypertarget{_Toc106079534}{}{}APPENDIX B: KEY TERMS
+\section{APPENDIX B: KEY TERMS}
 
 \emph{{[}Insert terms and definitions used in this document. Add rows to
 the table as necessary. Follow the link below to for definitions of
@@ -713,7 +678,7 @@ in this document.{]}}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\protect\hypertarget{_Toc141159352}{}{}APPENDIX C: GOALS
+\section{APPENDIX C: GOALS}
 
 \begin{itemize}
 \item
@@ -743,8 +708,7 @@ in this document.{]}}\tabularnewline
   \end{itemize}
 \item
   \begin{quote}
-  \textbf{Department of Health and Human Services (DHHS) Strategic
-  Goals}\\
+  \textbf{Department of Health and Human Services (DHHS) Strategic Goals}\\
   \textbf{URL}:
   \href{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}{\textbf{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}}
   (Search for ``HHS IT Strategic Plan'')
@@ -799,7 +763,6 @@ in this document.{]}}\tabularnewline
   \textbf{URL}:
   \href{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}{\textbf{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}}
   \end{quote}
-\end{itemize}
 
 \begin{itemize}
 \item
@@ -822,14 +785,12 @@ in this document.{]}}\tabularnewline
   and information security controls
 \end{itemize}
 
-\begin{itemize}
 \item
   \begin{quote}
   \textbf{President's Management Agenda (PMA) Strategic Goals}\\
   \textbf{URL}:
   \href{http://www.whitehouse.gov/omb/budintegration/pma_index.html}{\textbf{http://www.whitehouse.gov/omb/budintegration/pma\_index.html}}
   \end{quote}
-\end{itemize}
 
 \begin{quote}
 \textbf{Government-wide Initiatives}
@@ -904,3 +865,7 @@ in this document.{]}}\tabularnewline
   Programs and Systems
   \end{quote}
 \end{itemize}
+\end{itemize}
+
+%----------------------------------------------------------
+\end{document}
