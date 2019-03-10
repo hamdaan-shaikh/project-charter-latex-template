@@ -1,0 +1,906 @@
+\emph{\textless{}Project Name\textgreater{}}
+
+project charter
+
+Version \emph{\textless{}1.0\textgreater{}}
+
+\emph{\textless{}mm/dd/yyyy\textgreater{}}
+
+VERSION HISTORY
+
+{[}Provide information on how the development and distribution of the
+Project Charter up to the final point of approval was controlled and
+tracked. Use the table below to provide the version number, the author
+implementing the version, the date of the version, the name of the
+person approving the version, the date that particular version was
+approved, and a brief description of the reason for creating the revised
+version.{]}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Version \#}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Implemented}
+
+\textbf{By}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Revision}
+
+\textbf{Date}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Approved}
+
+\textbf{By}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Approval}
+
+\textbf{Date}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+\textbf{Reason}\strut
+\end{minipage}\tabularnewline
+1.0 & \emph{\textless{}Author name\textgreater{}} &
+\emph{\textless{}mm/dd/yy\textgreater{}} &
+\emph{\textless{}name\textgreater{}} &
+\emph{\textless{}mm/dd/yy\textgreater{}} &
+\emph{\textless{}reason\textgreater{}}\tabularnewline
+& & & & &\tabularnewline
+& & & & &\tabularnewline
+& & & & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\textbf{UP Template Version:} 11/30/06
+
+\emph{\textbf{\\
+Note to the Author}}
+
+{[}This document is a template of a Project Charter document for a
+project. The template includes instructions to the author, boilerplate
+text, and fields that should be replaced with the values specific to the
+project.
+
+\begin{itemize}
+\item
+  Blue italicized text enclosed in square brackets ({[}text{]}) provides
+  instructions to the document author, or describes the intent,
+  assumptions and context for content included in this document.
+\item
+  Blue italicized text enclosed in angle brackets
+  (\textless{}text\textgreater{}) indicates a field that should be
+  replaced with information specific to a particular project.
+\item
+  Text and tables in black are provided as boilerplate examples of
+  wording and formats that may be used or modified as appropriate to a
+  specific project. These are offered only as suggestions to assist in
+  developing project documents; they are not mandatory formats.
+\end{itemize}
+
+When using this template for your project document, it is recommended
+that you follow these steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Replace all text enclosed in angle brackets (i.e., \textless{}Project
+  Name\textgreater{}) with the correct field values. These angle
+  brackets appear in both the body of the document and in headers and
+  footers. To customize fields in Microsoft Word (which display a gray
+  background when selected):
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    Select File\textgreater{}Properties\textgreater{}Summary and fill in
+    the Title field with the Document Name and the Subject field with
+    the Project Name.
+  \item
+    Select File\textgreater{}Properties\textgreater{}Custom and fill in
+    the Last Modified, Status, and Version fields with the appropriate
+    information for this document.
+  \item
+    After you click OK to close the dialog box, update the fields
+    throughout the document with these values by selecting
+    Edit\textgreater{}Select All (or Ctrl-A) and pressing F9. Or you can
+    update an individual field by clicking on it and pressing F9. This
+    must be done separately for Headers and Footers.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  Modify boilerplate text as appropriate to the specific project.
+  \end{quote}
+\item
+  To add any new sections to the document, ensure that the appropriate
+  header and body text styles are maintained. Styles used for the
+  Section Headings are Heading 1, Heading 2 and Heading 3. Style used
+  for boilerplate text is Body Text.
+\item
+  To update the Table of Contents, right-click and select ``Update
+  field'' and choose the option- ``Update entire table''
+\item
+  Before submission of the first draft of this document, delete this
+  ``Notes to the Author'' page and all instructions to the author, which
+  appear throughout the document as blue italicized text enclosed in
+  square brackets.{]}
+\end{enumerate}
+
+TABLE OF CONTENTS
+
+\protect\hyperlink{_Toc141159323}{1 Introduction 5}
+
+\protect\hyperlink{purpose-of-project-charter}{1.1 Purpose of Project
+Charter 5}
+
+\protect\hyperlink{project-and-product-overview}{2 project And Product
+Overview 5}
+
+\protect\hyperlink{justification}{3 Justification 5}
+
+\protect\hyperlink{business-need}{3.1 Business Need 5}
+
+\protect\hyperlink{public-health-and-business-impact}{3.2 Public Health
+and Business Impact 5}
+
+\protect\hyperlink{strategic-alignment}{3.3 Strategic Alignment 5}
+
+\protect\hyperlink{scope}{4 Scope 6}
+
+\protect\hyperlink{objectives}{4.1 Objectives 6}
+
+\protect\hyperlink{high-level-requirements}{4.2 High-Level Requirements
+6}
+
+\protect\hyperlink{major-deliverables}{4.3 Major Deliverables 6}
+
+\protect\hyperlink{boundaries}{4.4 Boundaries 6}
+
+\protect\hyperlink{duration}{5 Duration 7}
+
+\protect\hyperlink{timeline}{5.1 Timeline 7}
+
+\protect\hyperlink{executive-milestones}{5.2 Executive Milestones 7}
+
+\protect\hyperlink{budget-estimate}{6 budget Estimate 7}
+
+\protect\hyperlink{funding-source}{6.1 Funding Source 7}
+
+\protect\hyperlink{estimate}{6.2 Estimate 7}
+
+\protect\hyperlink{high-level-alternatives-analysis}{7 High-Level
+Alternatives Analysis 8}
+
+\protect\hyperlink{assumptions-constraints-and-risks}{8 Assumptions,
+Constraints And Risks 8}
+
+\protect\hyperlink{assumptions}{8.1 Assumptions 8}
+
+\protect\hyperlink{constraints}{8.2 Constraints 8}
+
+\protect\hyperlink{risks}{8.3 Risks 8}
+
+\protect\hyperlink{project-organization}{9 Project Organization 9}
+
+\protect\hyperlink{roles-and-responsibilities}{9.1 Roles and
+Responsibilities 9}
+
+\protect\hyperlink{stakeholders-internal-and-external}{9.2 Stakeholders
+(Internal and External) 10}
+
+\protect\hyperlink{project-charter-approval}{10 project Charter approval
+11}
+
+\protect\hyperlink{_Toc107027580}{APPENDIX A: REFERENCES 12}
+
+\protect\hyperlink{_Toc106079534}{APPENDIX B: KEY TERMS 13}
+
+\protect\hyperlink{_Toc141159352}{APPENDIX C: GOALS 14}
+
+\hypertarget{introduction}{%
+\section{\texorpdfstring{\\
+Introduction}{ Introduction}}\label{introduction}}
+
+\hypertarget{purpose-of-project-charter}{%
+\subsection{Purpose of Project
+Charter}\label{purpose-of-project-charter}}
+
+{[}Provide the purpose of the project charter.{]}
+
+The \emph{\textless{}Project Name\textgreater{}} project charter
+documents and tracks the necessary information required by decision
+maker(s) to approve the project for funding. The project charter should
+include the needs, scope, justification, and resource commitment as well
+as the project's sponsor(s) decision to proceed or not to proceed with
+the project. It is created during the Initiating Phase of the project.
+
+The intended audience of the \emph{\textless{}Project
+Name\textgreater{}} project charter is \emph{the project sponsor and
+senior leadership.}
+
+\hypertarget{project-and-product-overview}{%
+\section{project And Product
+Overview}\label{project-and-product-overview}}
+
+{[}Typically, the description should answer who, what, when and where,
+in a concise manner. It should also state the estimated project duration
+(e.g., 18 months) and the estimated project budget (e.g., \$1.5M).
+
+\hypertarget{justification}{%
+\section{Justification}\label{justification}}
+
+\hypertarget{business-need}{%
+\subsection{Business Need}\label{business-need}}
+
+{[}Example: A data collection system is necessary to conduct a national
+program of surveillance and research to monitor and characterize the x
+epidemic, including its determinants and the epidemiologic dynamics such
+as prevalence, incidence, and antiretroviral resistance, and to guide
+public health action at the federal, state and local levels. Data
+collection activities will assist with monitoring the incidence and
+prevalence of x infection, and x-related morbidity and mortality in the
+population, estimate incidence of x infection, identify changes in
+trends of x transmission, and identify populations at risk.){]}
+
+\hypertarget{public-health-and-business-impact}{%
+\subsection{Public Health and Business
+Impact}\label{public-health-and-business-impact}}
+
+{[}Example: System \emph{x} collects information about \emph{x}
+infection as the jurisdictional, regional, and national levels and will
+assist in monitoring trends in x transmission rates, incidence rates and
+x morbidity and mortality trends to help determine public health
+impact.{]}
+
+\hypertarget{strategic-alignment}{%
+\subsection{Strategic Alignment}\label{strategic-alignment}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Goal} & \textbf{Project Response Rank} &
+\textbf{Comments}\tabularnewline
+\midrule
+\endhead
+\emph{Scale}: \textbf{H} -- High, \textbf{M}- Medium, \textbf{L} -- Low,
+\textbf{N/A} -- Not Applicable & &\tabularnewline
+\textbf{NC / Division / Branch Strategic Goals:} & &\tabularnewline
+combo & &\tabularnewline
+& &\tabularnewline
+\textbf{CDC Strategic Goals:} & &\tabularnewline
+\emph{\textless{}Reference Appendix C for goals\textgreater{}} &
+&\tabularnewline
+& &\tabularnewline
+\textbf{Department of Health and Human Services (DHHS) Strategic Goals:
+} & &\tabularnewline
+\emph{\textless{}Reference Appendix C for goals\textgreater{}} &
+&\tabularnewline
+& &\tabularnewline
+\textbf{DHHS IT Goals:} & &\tabularnewline
+\emph{\textless{}Reference Appendix C for goals\textgreater{}} &
+&\tabularnewline
+& &\tabularnewline
+\textbf{President's Management Agenda (PMA) Strategic Goals:} &
+&\tabularnewline
+\emph{\textless{}Reference Appendix C for goals\textgreater{}} &
+&\tabularnewline
+& &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{scope}{%
+\section{Scope}\label{scope}}
+
+\hypertarget{objectives}{%
+\subsection{Objectives}\label{objectives}}
+
+{[}Example: Improving epidemiologic analyses by provisioning consistent
+data or to making progress towards a 2010 goal{]}
+
+The objectives of the \emph{\textless{}Project Name\textgreater{}} are
+as follows:
+
+\begin{itemize}
+\item
+  \emph{{[}Insert Objective 1{]}}
+\item
+  \emph{{[}Insert Objective 2{]}}
+\item
+  \emph{{[}Add additional bullets as necessary{]}}
+\end{itemize}
+
+\hypertarget{high-level-requirements}{%
+\subsection{High-Level Requirements}\label{high-level-requirements}}
+
+The following table presents the requirements that the project's
+product, service or result must meet in order for the project objectives
+to be satisfied.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+Req. \# & I Requirement Description\tabularnewline
+&\tabularnewline
+&\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{major-deliverables}{%
+\subsection{Major Deliverables}\label{major-deliverables}}
+
+The following table presents the major deliverables that the project's
+product, service or result must meet in order for the project objectives
+to be satisfied.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+Major Deliverable & I Deliverable Description\tabularnewline
+&\tabularnewline
+&\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{boundaries}{%
+\subsection{Boundaries}\label{boundaries}}
+
+{[}Describe the inclusive and exclusive boundaries of the project.
+Specifically address items that are out of scope.{]}
+
+\hypertarget{duration}{%
+\section{Duration}\label{duration}}
+
+\hypertarget{timeline}{%
+\subsection{Timeline}\label{timeline}}
+
+{[}An example of a high-level timeline is provided below.{]}
+
+\hypertarget{executive-milestones}{%
+\subsection{Executive Milestones }\label{executive-milestones}}
+
+{[}Example: For CPIC major/tactical projects, these milestones could be
+used to complete the Funding Plan/Cost and Schedule section of the OMB
+Exhibit 300.{]}
+
+The table below lists the high-level Executive Milestones of the project
+and their estimated completion timeframe.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Executive Milestones } & \textbf{Estimated Completion
+Timeframe}\tabularnewline
+\midrule
+\endhead
+{[}Insert milestone information (e.g., Project planned and authorized to
+proceed){]} & {[}Insert completion timeframe (e.g., Two weeks after
+project concept is approved){]}\tabularnewline
+{[}Insert milestone information (e.g., Version 1 completed){]} &
+{[}Insert completion timeframe (e.g., Twenty-five weeks after
+requirements analysis is completed){]}\tabularnewline
+{[}Add additional rows as necessary{]} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{budget-estimate}{%
+\section{budget Estimate}\label{budget-estimate}}
+
+\hypertarget{funding-source}{%
+\subsection{Funding Source}\label{funding-source}}
+
+{[}Example: grant, terrorism budget, or operational budget.{]}
+
+\hypertarget{estimate}{%
+\subsection{Estimate}\label{estimate}}
+
+This section provides a summary of estimated spending to meet the
+objectives of the \emph{\textless{}Project Name\textgreater{}} project
+as described in this project charter. This summary of spending is
+preliminary, and should reflect costs for the entire investment
+lifecycle. It is intended to present probable funding requirements and
+to assist in obtaining budgeting support.\\
+\emph{{[}For CPIC major/tactical projects complete and attach the
+required sections of the \href{http://intranet.cdc.gov/cpic/}{OMB
+Exhibit 300} located at \url{http://intranet.cdc.gov/cpic/}. For all
+other projects, provide a summary of the project's expected spending}
+\emph{below.{]}}
+
+\emph{\\
+}
+
+\hypertarget{high-level-alternatives-analysis}{%
+\section{High-Level Alternatives
+Analysis}\label{high-level-alternatives-analysis}}
+
+{[}Example: Alternatives to developing a custom system may have included
+looking at existing COTS products or reusing an existing system.{]}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \emph{{[}Provide a statement summarizing the factors considered.{]}}
+\item
+  \emph{{[}Provide a statement summarizing the factors considered.{]}}
+\end{enumerate}
+
+\hypertarget{assumptions-constraints-and-risks}{%
+\section{Assumptions, Constraints And
+Risks}\label{assumptions-constraints-and-risks}}
+
+\hypertarget{assumptions}{%
+\subsection{Assumptions}\label{assumptions}}
+
+{[}Example: The system is being developed to capture data from public
+health partners. One assumption is that data is entered electronically
+into the system.{]}
+
+This section identifies the statements believed to be true and from
+which a conclusion was drawn to define this project charter.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{quote}
+  {[}Insert description of the first assumption.{]}
+  \end{quote}
+\item
+  \begin{quote}
+  \emph{{[}Insert description of the second assumption.{]}}
+  \end{quote}
+\end{enumerate}
+
+\hypertarget{constraints}{%
+\subsection{Constraints}\label{constraints}}
+
+{[}Example: There might be time constraints on developing a system that
+is used to track data of highly infectious diseases like SARS.{]}
+
+This section identifies any limitation that must be taken into
+consideration prior to the initiation of the project.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \emph{{[}Insert description of the first constraint.{]}}
+\item
+  \emph{{[}Insert description of the second constraint.{]}}
+\end{enumerate}
+
+\hypertarget{risks}{%
+\subsection{Risks}\label{risks}}
+
+{[}Example: The risk of accessibility or unavailability of public health
+partners for obtaining requirements to develop a data collection system
+may delay project deliverables. A possible mitigation strategy might be
+to schedule requirement sessions with the partners as early as possible.
+List the risks that the project sponsor should be aware of before making
+a decision on funding the project, including risks of not funding the
+project.{]}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Risk} & \textbf{Mitigation}\tabularnewline
+\midrule
+\endhead
+&\tabularnewline
+&\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{project-organization}{%
+\section{Project Organization}\label{project-organization}}
+
+\hypertarget{roles-and-responsibilities}{%
+\subsection{Roles and
+Responsibilities}\label{roles-and-responsibilities}}
+
+{[}Depending on your project organization, you may modify the roles and
+responsibilities listed in the table below.{]}
+
+This section describes the key roles supporting the project.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Name \& Organization} & \textbf{Project Role} & \textbf{Project
+Responsibilities}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Project Sponsor\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person responsible for acting as the project's champion and providing
+direction and support to the team. In the context of this document, this
+person approves the request for funding, approves the project scope
+represented in this document, and sets the priority of the project
+relative to other projects in his/her area of responsibility.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Government Monitor\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Government employee who provides the interface between the project team
+and the project sponsor. Additionally, they will serve as the single
+focal point of contact for the Project Manager to manage CDC's
+day-to-day interests. This person must have adequate business and
+project knowledge in order to make informed decisions.
+
+In the case where a contract is involved, the role of a Government
+Monitor will often be fulfilled by a Contracting Officer and a Project
+Officer.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Contracting Officer\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person who has the authority to enter into, terminate, or change a
+contractual agreement on behalf of the Government. This person bears the
+legal responsibility for the contract.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Project Officer\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+A program representative responsible for coordinating with acquisition
+officials on projects for which contract support is contemplated. This
+representative is responsible for technical monitoring and evaluation of
+the contractor's performance after award.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Project Manager (This could include a Contractor Project Manager or an
+FTE Project Manager)\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person who performs the day-to-day management of the project and has
+specific accountability for managing the project within the approved
+constraints of scope, quality, time and cost, to deliver the specified
+requirements, deliverables and customer satisfaction.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Business Steward\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person in management, often the Branch Chief or Division Director, who
+is responsible for the project in its entirety.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Technical Steward\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person who is responsible for the technical day-to-day aspects of the
+system including the details of system development. The Technical
+Steward is responsible for providing technical direction to the
+project.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textless{}Name\textgreater{}
+
+\textless{}Org\textgreater{}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Security Steward\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+Person who is responsible for playing the lead role for maintaining the
+project's information security.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{stakeholders-internal-and-external}{%
+\subsection{Stakeholders (Internal and
+External)}\label{stakeholders-internal-and-external}}
+
+{[}Examples of stakeholders include an epidemiologist performing a
+behavioral research project and people in the field collecting data
+using a software application (the proposed project) to collect the data
+required for a behavioral research project.{]}
+
+\hypertarget{project-charter-approval}{%
+\section{\texorpdfstring{\\
+project Charter
+approval}{ project Charter approval}}\label{project-charter-approval}}
+
+The undersigned acknowledge they have reviewed the project charter and
+authorize and fund the \emph{\textless{}Project Name\textgreater{}}
+project. Changes to this project charter will be coordinated with and
+approved by the undersigned or their designated representatives.
+
+{[}List the individuals whose signatures are desired. Examples of such
+individuals are Business Steward, Project Manager or Project Sponsor.
+Add additional lines for signature as necessary. Although signatures are
+desired, they are not always required to move forward with the practices
+outlined within this document.{]}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Signature: & & Date: &\tabularnewline
+\midrule
+\endhead
+Print Name: & & &\tabularnewline
+Title: & & &\tabularnewline
+Role: & & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Signature: & & Date: &\tabularnewline
+\midrule
+\endhead
+Print Name: & & &\tabularnewline
+Title: & & &\tabularnewline
+Role: & & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Signature: & & Date: &\tabularnewline
+\midrule
+\endhead
+Print Name: & & &\tabularnewline
+Title: & & &\tabularnewline
+Role: & & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\protect\hypertarget{_Toc107027580}{}{}APPENDIX A: REFERENCES
+
+{[}Insert the name, version number, description, and physical location
+of any documents referenced in this document. Add rows to the table as
+necessary.{]}
+
+\begin{quote}
+The following table summarizes the documents referenced in this
+document.
+\end{quote}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Document Name and Version} & \textbf{Description} &
+\textbf{Location}\tabularnewline
+\midrule
+\endhead
+\emph{\textless{}Document Name and Version Number\textgreater{}} &
+\emph{{[}Provide description of the document{]}} & \emph{\textless{}URL
+or Network path where document is located\textgreater{}}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\protect\hypertarget{_Toc106079534}{}{}APPENDIX B: KEY TERMS
+
+\emph{{[}Insert terms and definitions used in this document. Add rows to
+the table as necessary. Follow the link below to for definitions of
+project management terms and acronyms used in this and other documents.}
+
+\emph{http://www2.cdc.gov/cdcup/library/other/help.htm}
+
+The following table provides definitions for terms relevant to this
+document.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Term} & \textbf{Definition}\tabularnewline
+\midrule
+\endhead
+\emph{{[}Insert Term{]}} & \emph{{[}Provide definition of the term used
+in this document.{]}}\tabularnewline
+\emph{{[}Insert Term{]}} & \emph{{[}Provide definition of the term used
+in this document.{]}}\tabularnewline
+\emph{{[}Insert Term{]}} & \emph{{[}Provide definition of the term used
+in this document.{]}}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\protect\hypertarget{_Toc141159352}{}{}APPENDIX C: GOALS
+
+\begin{itemize}
+\item
+  \begin{quote}
+  \textbf{CDC Strategic Goals}\\
+  \textbf{URL}:
+  \href{http://www.cdc.gov/about/goals/}{\textbf{http://www.cdc.gov/about/goals/}}
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    \textbf{Goal 1} - Healthy People in Every Stage of Life
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 2} - Healthy People in Healthy Places
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 3} - People Prepared for Emerging Health Threats
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 4} - Healthy People in a Healthy World
+    \end{quote}
+  \end{itemize}
+\item
+  \begin{quote}
+  \textbf{Department of Health and Human Services (DHHS) Strategic
+  Goals}\\
+  \textbf{URL}:
+  \href{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}{\textbf{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}}
+  (Search for ``HHS IT Strategic Plan'')
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    \textbf{Goal 1} - Reduce the major threats to the health and
+    well-being of Americans
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 2} - Enhance the ability of the Nation's health care
+    system to effectively respond to bioterrorism and other public
+    health challenges
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 3} - Increase the percentage of the Nation's children
+    and adults who have access to health care services, and expand
+    consumer choices
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 4} - Enhance the capacity and productivity of the
+    Nation's health science research enterprise
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 5} - Improve the quality of health care services
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 6} - Improve the economic and social well-being of
+    individuals, families, and communities, especially those most in
+    need
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 7} - Improve the stability and healthy development of
+    our Nation's children and youth
+    \end{quote}
+  \item
+    \begin{quote}
+    \textbf{Goal 8} - Achieve excellence in management practices
+    \end{quote}
+  \end{itemize}
+\item
+  \begin{quote}
+  \textbf{Department of Health and Human Services (DHHS) IT Goals}\\
+  \textbf{URL}:
+  \href{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}{\textbf{http://aspe.hhs.gov/hhsplan/2004/goals.shtml}}
+  \end{quote}
+\end{itemize}
+
+\begin{itemize}
+\item
+  \textbf{Goal 1} - Provide a secure and trusted IT environment
+\item
+  \textbf{Goal 2} - Enhance the quality, availability, and delivery of
+  HHS information and services to citizens, employees, businesses, and
+  governments
+\item
+  \textbf{Goal 3} - Implement an enterprise approach to IT
+  infrastructure and common administrative systems that will foster
+  innovation and collaboration
+\item
+  \textbf{Goal 4} - Enable and improve the integration of health and
+  human services information
+\item
+  \textbf{Goal 5} - Achieve excellence in IT management practices,
+  including a governance process that complements program management,
+  supports e-government initiatives, and ensures effective data privacy
+  and information security controls
+\end{itemize}
+
+\begin{itemize}
+\item
+  \begin{quote}
+  \textbf{President's Management Agenda (PMA) Strategic Goals}\\
+  \textbf{URL}:
+  \href{http://www.whitehouse.gov/omb/budintegration/pma_index.html}{\textbf{http://www.whitehouse.gov/omb/budintegration/pma\_index.html}}
+  \end{quote}
+\end{itemize}
+
+\begin{quote}
+\textbf{Government-wide Initiatives}
+\end{quote}
+
+\begin{itemize}
+\item
+  \begin{quote}
+  \textbf{Goal 1} - Strategic Management of Human Capital
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 2} - Competitive Sourcing
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 3} - Improved Financial Performance
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 4} - Expanded Electronic Government
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 5} - Budget and Performance Integration
+  \end{quote}
+\end{itemize}
+
+\begin{quote}
+\textbf{Program Initiatives}
+\end{quote}
+
+\begin{itemize}
+\item
+  \begin{quote}
+  \textbf{Goal 1} - Faith-Based and Community Initiative
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 2} - Privatization of Military Housing
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 3} - Better Research and Development Investment Criteria
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 4} - Elimination of Fraud and Error in Student Aid
+  Programs and Deficiencies in Financial Management
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 5} - Housing and Urban Development Management and
+  Performance
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 6} - Broadened Health Insurance Coverage through State
+  Initiatives
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 7} - A ``Right-Sized'' Overseas Presence
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 8} - Reform of Food Aid Programs
+  \end{quote}
+\item
+  \begin{quote}
+  \textbf{Goal 9} - Coordination of Veterans Affairs and Defense
+  Programs and Systems
+  \end{quote}
+\end{itemize}
