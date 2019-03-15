@@ -1,0 +1,483 @@
+% Current version of chronos, which is available at:
+% https://tex.stackexchange.com/a/342699/ (2016-12-06)
+
+\usepackage{pgfcalendar}
+\usepackage{datenumber,xparse,fp}
+\usetikzlibrary{arrows.meta,backgrounds,fixedpointarithmetic}
+\makeatletter
+\ExplSyntaxOn
+\tl_new:N \l_chronos_date_tl
+\tl_new:N \l_chronos_dateformat_tl
+\tl_new:N \l_chronos_year_tl
+\tl_new:N \l_chronos_yearformat_tl
+\tl_set:Nn \l_chronos_dateformat_tl { !d/!m/!Y }
+\tl_set:Nn \l_chronos_yearformat_tl { !Y }
+% YY yn lle YYYY
+\cs_new_protected_nopar:Npn \chronos_year_shorten:n #1
+{
+  \chronos_year_shorten_aux:w #1 \q_stop % expl3 manuaal, 46
+}
+\cs_new_protected_nopar:Npn \chronos_year_shorten_aux:w #1 #2 #3 #4 \q_stop
+{
+  #3 #4
+}
+\cs_generate_variant:Nn \chronos_year_shorten:n { V , c }
+\cs_generate_variant:Nn \int_abs:n { c }
+\cs_generate_variant:Nn \tl_replace_all:Nnn { Nnx }
+% dangos dyddiadau
+\cs_new_protected_nopar:Npn \chronos_show_date:n #1
+{% ateb Joseph Wright: http://tex.stackexchange.com/a/327642/
+  \tl_set_eq:NN \l_chronos_date_tl \l_chronos_dateformat_tl
+  \tl_replace_all:Nnx \l_chronos_date_tl { !a } { \pgfcalendarweekdayshortname{\thechronos@weekday} }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !A } { \pgfcalendarweekdayname{\thechronos@weekday} }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !b } { \pgfcalendarmonthshortname{\csname chronos@#1month\endcsname} }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !B } { \pgfcalendarmonthname{\csname chronos@#1month\endcsname} }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !d } { \csname chronos@#1day\endcsname }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !E } { \chronos_dateformat_era:c { chronos@#1year } }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !m } { \csname chronos@#1month\endcsname }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !q } { \chronos_dateformat_sign:c { chronos@#1year } }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !Q } { \chronos_dateformat_signs:c { chronos@#1year } }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !y } { \chronos_year_shorten:c { chronos@#1year } }
+  \tl_replace_all:Nnx \l_chronos_date_tl { !Y } { \int_abs:c { chronos@#1year } }
+  \l_chronos_date_tl
+}
+\cs_new_protected_nopar:Npn \chronos_show_year:n #1
+{% ateb Joseph Wright: http://tex.stackexchange.com/a/327642/
+  \tl_set_eq:NN \l_chronos_year_tl \l_chronos_yearformat_tl
+  \tl_replace_all:Nnx \l_chronos_year_tl { !E } { \chronos_dateformat_era:n { #1 } }
+  \tl_replace_all:Nnx \l_chronos_year_tl { !q } { \chronos_dateformat_sign:n { #1 } }
+  \tl_replace_all:Nnx \l_chronos_year_tl { !Q } { \chronos_dateformat_signs:n { #1 } }
+  \tl_replace_all:Nnx \l_chronos_year_tl { !y } { \chronos_year_shorten:n { #1 } }
+  \tl_replace_all:Nnx \l_chronos_year_tl { !Y } { \int_abs:n { #1 } }
+  \l_chronos_year_tl
+}
+\cs_new_protected_nopar:Npn \chronos_dateformat_sign:n #1
+{
+  \int_compare:nT { #1 < 0 } { - }
+}
+\cs_generate_variant:Nn \chronos_dateformat_sign:n { c }
+\cs_new_protected_nopar:Npn \chronos_dateformat_signs:n #1
+{
+  \int_compare:nTF
+  { #1 < 0 } { - }
+  {
+    \int_compare:nT { #1 > 0 }
+    {
+      \ifchronos@yearzero\relax
+      \else
+        \int_compare:nT { #1 > 1} { +  }
+      \fi
+    }
+  }
+}
+\cs_generate_variant:Nn \chronos_dateformat_signs:n { c }
+\cs_new_protected_nopar:Npn \chronos_dateformat_era:n #1
+{
+  \int_compare:nTF
+  { #1 < 0 } { \chronos@yearbce }
+  {
+    \int_compare:nT { #1 > 0 }
+    {
+      \ifchronos@yearzero\relax
+      \else
+        \int_compare:nT { #1 > 1} { \chronos@yearce }
+      \fi
+    }
+  }
+}
+\cs_generate_variant:Nn \chronos_dateformat_era:n { c }
+\cs_new_protected_nopar:Npn \chronos_set_dateformat:n #1
+{
+  \tl_set:Nn \l_chronos_dateformat_tl { #1 }
+  \tl_replace_all:Nnn \l_chronos_dateformat_tl { ~ } { \c_space_token }
+}
+\cs_new_protected_nopar:Npn \chronos_set_yearformat:n #1
+{
+  \tl_set:Nn \l_chronos_yearformat_tl { #1 }
+  \tl_replace_all:Nnn \l_chronos_yearformat_tl { ~ } { \c_space_token }
+}
+% user interface
+\NewDocumentCommand \chronos@setdateformat { m }
+{
+  \chronos_set_dateformat:n { #1 }
+}
+\NewDocumentCommand \chronos@setyearformat { m }
+{
+  \chronos_set_yearformat:n { #1 }
+}
+% for pgf/tikz convenience
+\NewDocumentCommand \chronos@showdate { o m }
+{
+  \group_begin:
+    \IfValueT { #1 }
+    {
+      \chronos_set_dateformat:n { #1 }
+    }
+    \pgfcalendarjuliantoweekday{\csname thechronos@#2date\endcsname}{\c@chronos@weekday}%
+    \chronos_show_date:n { #2 }
+  \group_end:
+}
+\NewDocumentCommand \chronos@showyear { o m }
+{
+  \group_begin:
+    \IfValueT { #1 }
+    {
+      \chronos_set_yearformat:n { #1 }
+    }
+    \chronos_show_year:n { #2 }
+  \group_end:
+}
+\ExplSyntaxOff
+\newlength\chronos@tempdima
+\newcounter{chronos@date}
+\newcounter{chronos@startdate}
+\newcounter{chronos@enddate}
+\newcounter{chronos@startyear}
+\newcounter{chronos@endyear}
+\newcounter{chronos@yeardate}
+\newcounter{chronos@thingdate}
+\newcounter{chronos@otherthingdate}
+\newcounter{chronos@weekday}
+\newcounter{chronos@tempcnta}
+\newif\ifchronos@marks
+\chronos@marksfalse
+\newif\ifchronos@timeline@showyears
+\chronos@timeline@showyearstrue
+\newif\ifchronos@eventyearsonline
+\chronos@eventyearsonlinefalse
+\newif\ifchronos@yearzero
+\chronos@yearzerofalse
+\newif\ifchronos@onlytext
+\chronos@onlytextfalse
+\newif\ifchronos@markeras
+\chronos@markerasfalse
+\newif\ifchronos@yearsonline
+\chronos@yearsonlinefalse
+\newif\ifchronos@eventdatessplit
+\chronos@eventdatessplitfalse
+\pgfkeys{/pgf/number format,
+  int detect,
+  set thousands separator={},
+}
+\tikzset{%
+  /handlers/.chronos too/.code={%
+    \edef\chronos@tempc{\pgfkeyscurrentpath}%
+    \edef\chronos@tempd{#1}%
+    \tikzset{%
+      \pgfkeyscurrentpath @too/.code={%
+        \tikzset{%
+          /chronos/\chronos@tempd/.append style={##1},
+        }%
+      },
+      \chronos@tempc/.forward to=\chronos@tempc @too,
+    }%
+  },
+  chronos/.code={% http://tex.stackexchange.com/a/159856/ - Claudio Fiandrino
+    \tikzset{%
+      align=center,
+      anchor=mid,
+      fixed point arithmetic,
+      /chronos/.cd,
+      #1,
+      timeline config,
+      timeline config/.code={},
+    }%
+    \ifnum\chronos@startyear=\chronos@endyear
+      \tikzset{%
+        /chronos/timeline no years,
+      }%
+    \fi
+    \setlength\chronos@tempdima{\chronos@timelinemargin}%
+    \ifchronos@markeras
+      {%
+        \chronos@timelinefont
+        \pgfmathsetmacro\chronos@tempe{((width("\chronos@bce"))>(width("\chronos@ce"))) ? (width("\chronos@bce")) : (width("\chronos@ce"))}%
+        \xdef\chronos@tempf{\chronos@tempe}%
+      }%
+      \addtolength\chronos@tempdima{\chronos@tempf pt}%
+    \fi
+    \pgfmathsetmacro\chronos@unit{(\chronos@width-2*\chronos@tempdima)/(\thechronos@enddate-\thechronos@startdate)}%
+    \draw [/chronos/timeline@line, line width=\chronos@height] (-\chronos@tempdima,0) coordinate (chronos pre) -- +(\chronos@width,0) coordinate (chronos post);
+    \coordinate (chronos base) at (0,-.5*\chronos@height);
+    \coordinate (chronos top) at (0,.5*\chronos@height);
+    \coordinate (chronos foot) at (0,{-.5*\chronos@height-\chronos@borderheight});
+    \coordinate (chronos head) at (0,{.5*\chronos@height+\chronos@borderheight});
+    \coordinate (chronos start) at (0,0);
+    \coordinate (chronos end) at ([xshift=-\chronos@tempdima]chronos post);
+    \ifdim\chronos@borderheight>0pt
+      \fill [bottom color=chronos@borderinner, top color=chronos@borderouter] (chronos pre |- chronos head) rectangle (chronos post |- chronos top);
+      \fill [top color=chronos@borderinner, bottom color=chronos@borderouter] (chronos pre |- chronos base) rectangle (chronos post |- chronos foot);
+    \fi
+    \ifchronos@timeline@showyears
+      \pgfmathsetcounter{chronos@startyear}{\chronos@startyear}%
+      \pgfmathsetcounter{chronos@endyear}{\chronos@endyear}%
+      \def\tempa{none}%
+      \ifx\chronos@stepfrom\tempa
+        \def\tempa{01}%
+        \ifx\chronos@startmonth\tempa
+          \ifx\chronos@startday\tempa
+            \else\stepcounter{chronos@startyear}%
+          \fi
+          \else\stepcounter{chronos@startyear}%
+        \fi
+      \else
+        \pgfmathsetcounter{chronos@startyear}{\chronos@stepfrom}%
+      \fi
+      \def\tempa{12}%
+      \def\tempb{31}%
+      \ifx\chronos@endmonth\tempa
+        \ifx\chronos@endday\tempb
+          \stepcounter{chronos@endyear}%
+        \fi
+      \fi
+      \ifnum\value{chronos@endyear}<\value{chronos@startyear}\setcounter{chronos@endyear}{\thechronos@startyear}\fi
+      \pgfmathsetmacro\chronos@nextstep{int(((\thechronos@startyear+\chronos@stepyears)>\thechronos@endyear) ? \thechronos@endyear : (\thechronos@startyear+\chronos@stepyears))}%
+      \ifchronos@yearzero\setcounter{chronos@tempcnta}{1}\else\setcounter{chronos@tempcnta}{0}\fi
+      \foreach \b [evaluate=\b as \i using {((\b==0)&&(\thechronos@tempcnta==0)) ? 1 : int(\b)}, remember=\i as \ilast (initially \pi)] in {\thechronos@startyear,\chronos@nextstep,...,\thechronos@endyear} {%
+        \ifnum\i=\ilast\relax
+        \else
+          \pgfcalendardatetojulian{{\i}-01-01}{\c@chronos@yeardate}%
+          \ifchronos@yearzero\relax\else\ifnum0<\i\addtocounter{chronos@yeardate}{-366}\fi\fi
+          \pgfmathsetmacro\chronos@tempa{(\thechronos@yeardate-\thechronos@startdate)*\chronos@unit}%
+          \ifchronos@yearsonline
+            \node (chronos@year@\i) [/chronos/.cd, timeline@years, timeline year on line] at (\chronos@tempa pt,0) {\chronos@timelinefont\chronos@showyear{\i}};
+            \ifchronos@marks
+               \path [/chronos/timeline mark on line] (chronos@year@\i.south) -- (chronos@year@\i |- chronos base);
+               \path [/chronos/timeline mark on line] (chronos@year@\i.north) --  (chronos@year@\i |- chronos top);
+            \fi
+            \ifchronos@markeras
+              \path (chronos pre) +(\chronos@timelinemargin,0) node (chronos@bce) [/chronos/.cd, timeline@years, timeline year on line] {\chronos@timelinefont\chronos@bce};
+              \path (chronos post) +(-\chronos@timelinemargin,0) node (chronos@ce) [/chronos/.cd, timeline@years, timeline year on line] {\chronos@timelinefont\chronos@ce};
+            \fi
+          \else
+            \node (chronos@year@\i) [/chronos/.cd, timeline@years, timeline year off line] at (\chronos@tempa pt,0) {\chronos@timelinefont\chronos@showyear{\i}};
+            \ifchronos@marks
+              \path [shorten <=.5*\chronos@height, /chronos/timeline mark off line] (\chronos@tempa pt, 0) -- (chronos@year@\i);
+            \fi
+            \ifchronos@markeras
+              \path (chronos pre) +(\chronos@timelinemargin,0) node (chronos@bce) [/chronos/.cd, timeline@years, timeline year off line] {\chronos@timelinefont\chronos@bce};
+              \path (chronos post) +(-\chronos@timelinemargin,0) node (chronos@ce) [/chronos/.cd, timeline@years, timeline year off line] {\chronos@timelinefont\chronos@ce};
+            \fi
+          \fi
+        \fi
+      }%
+    \else
+      \ifchronos@markeras
+        \path (chronos pre) +(\chronos@timelinemargin,0) node (chronos@bce) [/chronos/.cd, timeline@years, timeline year off line] {\chronos@timelinefont\chronos@bce};
+        \path (chronos post) +(-\chronos@timelinemargin,0) node (chronos@ce) [/chronos/.cd, timeline@years, timeline year off line] {\chronos@timelinefont\chronos@ce};
+      \fi
+    \fi
+    \ifchronos@eventyearsonline
+      \tikzset{%
+        /chronos/timeline years=on line,
+      }%
+    \fi
+  },
+  chronos set date/.code args={#1:#2:#3:#4}{%
+    \pgfcalendardatetojulian{{#1}-#2-#3}{\c@chronos@date}%
+    \setcounter{chronos@#4date}{\thechronos@date}%
+    \ifchronos@yearzero\relax
+    \else
+      \setcounter{chronos@tempcnta}{#1}%
+      \ifnum0<\value{chronos@tempcnta}%
+        \addtocounter{chronos@#4date}{-366}%
+      \fi
+    \fi
+    \expandafter\def\csname chronos@#4year\endcsname{#1}%
+    \expandafter\def\csname chronos@#4month\endcsname{#2}%
+    \expandafter\def\csname chronos@#4day\endcsname{#3}%
+  },
+  chronos date/.style args={#1-#2-#3}{%
+    /tikz/chronos set date/.expanded={#1:#2:#3:thing}%
+  },
+  chronos period date/.style args={#1-#2-#3}{%
+    /tikz/chronos set date/.expanded={#1:#2:#3:otherthing}%
+  },
+  /chronos/.search also={/tikz},
+  /chronos/.cd,
+  timeline config/.code={},
+  date format/.code={%
+    \chronos@setdateformat{#1}%
+  },
+  year format/.code={%
+    \chronos@setyearformat{#1}%
+  },
+  step years/.store in=\chronos@stepyears,
+  step from year/.store in=\chronos@stepfrom,
+  start date/.style args={#1-#2-#3}{%
+    /chronos/timeline config/.append code={%
+      \tikzset{/tikz/chronos set date/.expanded={#1:#2:#3:start}}%
+    },
+  },
+  end date/.style args={#1-#2-#3}{%
+    /chronos/timeline config/.append code={%
+      \tikzset{/tikz/chronos set date/.expanded={#1:#2:#3:end}}%
+    },
+  },
+  ce year label/.store in=\chronos@yearce,
+  bce year label/.store in=\chronos@yearbce,
+  timeline ce label/.store in=\chronos@ce,
+  timeline bce label/.store in=\chronos@bce,
+  timeline width/.store in=\chronos@width,
+  timeline height/.store in=\chronos@height,
+  width/.forward to=/chronos/timeline width,
+  height/.forward to=/chronos/timeline height,
+  timeline border height/.store in=\chronos@borderheight,
+  timeline border inner colour/.code={\colorlet{chronos@borderinner}{#1}},
+  timeline border outer colour/.code={\colorlet{chronos@borderouter}{#1}},
+  timeline mark eras/.is if=chronos@markeras,
+  timeline margin/.store in=\chronos@timelinemargin,
+  timeline font/.store in=\chronos@timelinefont,
+  timeline years set/.store in=\chronos@timelineyears,
+  timeline years/.is choice,
+  timeline years/.forward to=/chronos/timeline years set,
+  timeline years/above/.code={%
+    \tikzset{%
+      /chronos/timeline@years/.style={above, anchor=south, yshift=.5*\chronos@height},
+    }%
+  },
+  timeline years/below/.code={%
+    \tikzset{%
+      /chronos/timeline@years/.style={below, anchor=north, yshift=-.5*\chronos@height},
+    }%
+  },
+  timeline years/on line/.code={%
+    \chronos@yearsonlinetrue
+    \tikzset{%
+      /chronos/timeline@years/.style={anchor=center},
+    }%
+  },
+  only years/.code={%
+    \edef\tempa{}%
+    \edef\tempb{#1}%
+    \ifx\tempa\tempb\chronos@setdateformat{!Y}\else\chronos@setdateformat{#1}\fi
+    \tikzset{%
+      /tikz/chronos date/.style={%
+        /tikz/chronos set date/.expanded={##1:01:01:thing}%
+      },
+      /tikz/chronos period date/.style={%
+        /tikz/chronos set date/.expanded={##1:01:01:otherthing}%
+      },
+    }%
+  },
+  only text/.code={%
+    \tikzset{/chronos/only years}%
+    \chronos@setdateformat{}%
+    \chronos@onlytexttrue
+  },
+  year zero/.is if=chronos@yearzero,
+  background/.code={%
+    \colorlet{chronos@background}{#1}%
+  },
+  timeline marks/.is if=chronos@marks,
+  timeline show years/.is if=chronos@timeline@showyears,
+  timeline no years/.code={%
+    \tikzset{%
+      /chronos/timeline show years=false,
+    }%
+  },
+  lines/.style={draw, {Triangle[width=0pt 3,reversed,length=0pt 1.5]}-{Triangle[width=0pt 3,reversed,length=0pt 1.5]}, shorten <={.5*\chronos@height}},
+  events/.style={fill=chronos@background, fill opacity=.75, text opacity=1, draw opacity=1, rounded corners, align=center, font=\footnotesize},
+  period/.style={draw},
+  period event line/.style={/chronos/lines},
+  period event/.style={/chronos/events},
+  event line/.style={/chronos/lines},
+  event/.style={/chronos/events},
+  event years on line/.is if=chronos@eventyearsonline,
+  event year on line/.style={/chronos/timeline@years, /chronos/timeline year on line},
+  event dates split/.is if=chronos@eventdatessplit,
+  event date split/.style={/chronos/event},
+  event distance/.store in=\chronos@eventdistance,
+  special date/.store in=\chronos@specialdate,
+  timeline@line/.style={draw},
+  timeline line/.chronos too=timeline@line,
+  timeline year off line/.style={fill=chronos@background, text opacity=1, align=center, fill opacity=.75},
+  timeline mark off line/.style={draw, {Triangle[width=0pt 3,reversed,length=0pt 1.5]}-, thin, shorten >=-2pt},
+  timeline year on line/.style={text=chronos@background, inner sep=1pt, align=center},
+  timeline mark on line/.style={draw=chronos@background, shorten >=1.5pt},
+  timeline mark too/.code={%
+    \tikzset{%
+      /chronos/.cd,
+      timeline mark on line/.append style={#1},
+      timeline mark off line/.append style={#1},
+    }%
+  },
+  timeline year too/.code={%
+    \tikzset{%
+      /chronos/.cd,
+      timeline year on line/.append style={#1},
+      timeline year off line/.append style={#1},
+    }%
+  },
+  timeline mark/.forward to=/chronos/timeline mark too,
+  timeline year/.forward to=/chronos/timeline year too,
+  start date=1001-10-01,
+  end date=1003-06-14,
+  timeline width=100mm,
+  timeline height=1pt,
+  timeline border height=0pt,
+  chronos date=1850-01-01,
+  chronos period date=1851-01-01,
+  step years=1,
+  timeline years=above,
+  background=white,
+  timeline border inner colour=black,
+  timeline border outer colour=chronos@background,
+  step from year=none,
+  special date=none,
+  ce year label={\textsc{ce}},
+  bce year label={\textsc{bce}},
+  event distance=-10pt,
+  timeline ce label={CE},
+  timeline bce label={BCE},
+  timeline margin=10pt,
+  timeline font=\sffamily,
+}
+\NewDocumentCommand \chronosevent { O {} m O {} +m D () { \chronos@eventdistance } }
+{%
+  \tikzset{%
+    chronos date/.expanded={#2},
+  }%
+  \pgfmathsetmacro\chronos@offset{(#5 < 0pt) ? (#5-.5*\chronos@height-.5*\chronos@borderheight) : (#5+.5*\chronos@height+.5*\chronos@borderheight)}%
+  \pgfmathsetmacro\chronos@anchor{(#5 < 0pt) ? "north" : "south"}%
+  \scoped[on background layer]{%
+    \ifchronos@eventdatessplit
+      \ifchronos@onlytext\relax
+      \else
+        \pgfmathsetmacro\chronos@invanchor{(#5 < 0pt) ? "south" : "north"}%
+        \path [postaction={/chronos/event line, #1}] ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) -- +(0,-\chronos@offset pt) node [anchor=\chronos@invanchor, /chronos/event date split, #3] {\chronos@showdate{thing}};
+      \fi
+      \path [postaction={/chronos/event line, #1}] ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) -- +(0,\chronos@offset pt) node [anchor=\chronos@anchor, /chronos/event, #3] {#4};
+    \else
+      \path [postaction={/chronos/event line, #1}] ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) -- +(0,\chronos@offset pt) node [anchor=\chronos@anchor, /chronos/event, #3] {\ifchronos@onlytext\relax\else\chronos@showdate{thing}\\\fi#4};
+    \fi
+  }%
+  \ifchronos@eventyearsonline
+    \edef\tempa{none}%
+    \edef\tempb{\chronos@specialdate}%
+    \ifx\tempa\tempb\else\let\chronos@thingyear\chronos@specialdate\tikzset{/chronos/special date=none}\fi
+    \node [/chronos/.cd, event year on line] at ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) {\chronos@thingyear};
+  \fi
+}
+\NewDocumentCommand \chronosspecialdate { m }
+{%
+  \tikzset{%
+    /chronos/special date=#1,
+  }%
+}
+\NewDocumentCommand \chronosperiod { O {} m O {} m O {} +m D () { \chronos@eventdistance } }
+{%
+  \tikzset{%
+    chronos date/.expanded={#2}, chronos period date/.expanded={#4}
+  }%
+  \pgfmathsetmacro\chronos@offset{(#7 < 0pt) ? (#7-.5*\chronos@height-.5*\chronos@borderheight) : (#7+.5*\chronos@height+.5*\chronos@borderheight)}%
+  \pgfmathsetmacro\chronos@anchor{(#7 < 0pt) ? "north" : "south"}%
+  \ifchronos@yearsonline
+    \pgfmathsetmacro\chronos@borderoffset{(#7 < 0pt) ? (-.5*\chronos@height-.5*\chronos@borderheight) : (.5*\chronos@height+.5*\chronos@borderheight)}%
+    \path [postaction={line width=\chronos@borderheight, /chronos/period, blend mode=overlay, #1}] ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},\chronos@borderoffset pt) -- ({(\thechronos@otherthingdate-\thechronos@startdate)*\chronos@unit pt},\chronos@borderoffset pt);
+  \else
+    \path [postaction={line width=\chronos@height, /chronos/period, #1}] ({(\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) -- ({(\thechronos@otherthingdate-\thechronos@startdate)*\chronos@unit pt},0);
+  \fi
+  \scoped[on background layer]{\path [postaction={/chronos/period event line, #3}] ({(.5*\thechronos@otherthingdate+.5*\thechronos@thingdate-\thechronos@startdate)*\chronos@unit pt},0) -- +(0,\chronos@offset pt) node [anchor=\chronos@anchor, /chronos/period event, #5] {\ifchronos@onlytext\relax\else\chronos@showdate{thing}--\chronos@showdate{otherthing}\\\fi#6};}
+}
+\makeatother

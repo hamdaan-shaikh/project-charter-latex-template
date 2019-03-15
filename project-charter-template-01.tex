@@ -15,6 +15,8 @@
 \usepackage[whole]{bxcjkjatype}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{tikz}
+\input{chronos.txt}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
@@ -25,7 +27,7 @@
 \renewcommand{\footrulewidth}{0.5pt}
 \cfoot{\small Page \thepage\ of \pageref{LastPage}}
 
-%\graphicspath{ {plantuml/} }
+%----------------------------------------------------------
 
 \begin{document}
 \noindent
@@ -331,7 +333,44 @@ Specifically address items that are out of scope.{]}
 
 {[}An example of a high-level timeline is provided below.{]}
 
-\textbf{MISSING FIGURE}  %==========
+%---------------------------------------
+\begin{tikzpicture}
+  [
+    chronos={%
+      start date={0-01-01},
+      end date={2000-01-01},
+      step years=250,
+      timeline height=1pt,
+      timeline width=\textwidth,
+      timeline line={shorten >={-10mm}, -{Triangle Cap[length=10mm]}},
+      date format={!Y/!m/!d},
+    }
+  ]
+  \chronosperiod[draw=gray]{476-01-01}{476-10-31}{Fall of the\\Roman Empire}
+  \chronosevent{1492-10-11}{European\\Re-Discovery\\of America}
+  \chronosevent{1969-07-21}{First Steps\\on the Moon}
+\end{tikzpicture}
+
+Problem: we must include two Jan-01 days otherwise latex will hang up.
+
+\begin{tikzpicture}
+  [
+    chronos={%
+      start date={2019-01-01},
+      end date={2020-06-01},
+      step years=250,
+      timeline height=1pt,
+      timeline width=\textwidth,
+      timeline line={shorten >={-10mm}, -{Triangle Cap[length=10mm]}},
+      date format={!m/!d},
+    }
+  ]
+  \chronosevent{2019-10-05}{Project Plan\\Completed}
+  \chronosevent{2019-12-05}{Requrements\\Analysis\\Completed}
+  \chronosevent{2020-02-06}{Developed\\Prototype}
+  \chronosevent{2020-05-06}{System\\Development\\Completed}
+\end{tikzpicture}
+%---------------------------------------
 
 \hypertarget{executive-milestones}{%
 \subsection{Executive Milestones }\label{executive-milestones}}
